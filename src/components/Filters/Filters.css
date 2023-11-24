@@ -1,0 +1,13 @@
+.filters-paper-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.filters-item {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: baseline;
+  padding: 10px;
+}

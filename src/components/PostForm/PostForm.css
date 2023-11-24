@@ -1,0 +1,12 @@
+.create-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.form-title-part, .form-content-part {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}

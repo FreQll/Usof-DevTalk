@@ -1,0 +1,9 @@
+.user-photo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}

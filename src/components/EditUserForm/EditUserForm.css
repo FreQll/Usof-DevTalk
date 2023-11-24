@@ -1,0 +1,23 @@
+.edit-user-form,
+.user-info-edit {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info-edit {
+  gap: 1em;
+}
+
+.edit-user-form {
+  gap: 2em;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-file-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}

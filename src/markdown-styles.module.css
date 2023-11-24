@@ -1,0 +1,24 @@
+.reactMarkDown {
+  font-family: "Roboto", sans-serif;
+  overflow: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.reactMarkDown ul {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  list-style: disc outside none;
+}
+
+.reactMarkDown ul li {
+  margin-left: 2em;
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+.reactMarkDown code {
+  display: block;
+  white-space: pre-wrap;
+  padding: 15px;
+}

@@ -1,0 +1,29 @@
+.login_form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 690px) {
+    .links {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+    
+}
+
+.goto_login_button {
+    margin-top: 40px;
+}
