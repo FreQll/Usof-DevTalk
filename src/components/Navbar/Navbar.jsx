@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "./components/Logo";
 import styles from "./Navbar.css";
 import { Box, Typography } from "@mui/material";
@@ -15,7 +15,6 @@ import HamburgerMenu from "./components/HamburgerMenu";
 const Navbar = () => {
   const user = useSelector(selectUser);
   const theme = useSelector(selectThemeMode);
-  //const windowSize = useRef([window.innerWidth, window.innerHeight]);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -29,8 +28,6 @@ const Navbar = () => {
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
-
-    //setWindowWidth(window.innerWidth);
   }, []);
 
   return (

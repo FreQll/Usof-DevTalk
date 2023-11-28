@@ -6,7 +6,6 @@ import { formatDate } from "../utils/formatDate";
 import UserPhoto from "../components/UserPhoto/UserPhoto";
 import UserService from "../API/UserService";
 import CommentsList from "../components/Comments/CommentsList";
-import Rating from "../components/Rating/Rating";
 import "./css/PostPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../store/userSlice";
@@ -19,6 +18,7 @@ import CategoriesList from "../components/Categories/CategoriesList";
 import MarkdownBlock from "../components/MarkdownBlock";
 import AuthService from "../API/AuthService";
 import FavoriteButton from "../components/Posts/FavoriteButton";
+import RatingForPost from "../components/Rating/RatingForPost";
 
 const PostPage = () => {
   const { id } = useParams();
@@ -32,7 +32,7 @@ const PostPage = () => {
 
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const [severity, setSeverity] = useState("");
+  const [severity, setSeverity] = useState("error");
   const [isPostFavorite, setIsPostFavorite] = useState(null);
 
   const dispatch = useDispatch();
@@ -112,29 +112,6 @@ const PostPage = () => {
     setMessage(message);
   };
 
-  const sendLike = async (type) => {
-    try {
-      await PostsService.createLikeUnderPost(id, type, user?.id);
-      post.rating = type === "like" ? post.rating + 1 : post.rating - 1;
-      showMessage(`${type} sent!`, "success");
-    } catch (error) {
-      showMessage(error.response.data.message, "error");
-    }
-  };
-
-  const deleteLike = async () => {
-    if (!user) {
-      showMessage("Unauthorized", "error");
-      return;
-    }
-    try {
-      await PostsService.deleteLikeUnderPost(id);
-      showMessage("Like deleted!", "success");
-    } catch (error) {
-      showMessage(error.response.data.message, "error");
-    }
-  };
-
   const deletePost = async () => {
     if (user?.id !== post.author_id) {
       showMessage("Unauthorized", "error");
@@ -191,13 +168,12 @@ const PostPage = () => {
             </div>
           </div>
           <div className="content-block">
-            <Rating
+            <RatingForPost
+              post_id={id}
               rating={post.rating}
-              likeAction={() => sendLike("like")}
-              dislikeAction={() => sendLike("dislike")}
-              deleteLikeAction={() => deleteLike()}
+              showMessage={showMessage}
             />
-            <Container sx={{pr: 5}}>
+            <Container sx={{ pr: 5 }}>
               <MarkdownBlock content={post.content} />
             </Container>
           </div>
@@ -217,7 +193,9 @@ const PostPage = () => {
           {comments.length ? (
             <CommentsList author={commentsAuthors} comments={comments} />
           ) : (
-            <Typography sx={{mb: 5}} variant="body1">No comments yet...</Typography>
+            <Typography sx={{ mb: 5 }} variant="body1">
+              No comments yet...
+            </Typography>
           )}
         </Box>
       )}

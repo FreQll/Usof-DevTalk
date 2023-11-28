@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default class CommentsService {
-  static async createLikeUnderPost(id, type, user_id) {
+  static async createLikeUnderComment(id, type, user_id) {
     const response = await axios.post(
       `http://localhost:3001/api/comments/${id}/like`,
       {
@@ -12,7 +12,15 @@ export default class CommentsService {
     return response;
   }
 
-  static async deleteLikeFromPost(id) {
+  static async getLikesUnderComment(id) {
+    const response = await axios.get(
+      `http://localhost:3001/api/comments/${id}/like`,
+      { withCredentials: true }
+    );
+    return response;
+  }
+
+  static async deleteLikeFromComment(id) {
     const response = await axios.delete(
       `http://localhost:3001/api/comments/${id}/like`,
       { withCredentials: true }

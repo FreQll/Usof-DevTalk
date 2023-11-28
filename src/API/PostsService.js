@@ -64,6 +64,13 @@ export default class PostsService {
     return response;
   }
 
+  static async getLikesUnderPost(id) {
+    const response = await axios.get(
+      `http://localhost:3001/api/posts/${id}/like`
+    );
+    return response;
+  }
+
   static async createLikeUnderPost(id, type, user_id) {
     const response = await axios.post(
       `http://localhost:3001/api/posts/${id}/like`,

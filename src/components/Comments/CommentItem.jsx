@@ -1,15 +1,13 @@
 import { Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { formatDate } from "../../utils/formatDate";
-import Rating from "../Rating/Rating";
 import "./Comments.css";
 import CommentsService from "../../API/CommentsService";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../store/userSlice";
 import CustomSnackbar from "../CustomSnackbar";
 import MarkdownBlock from "../MarkdownBlock";
 import { useNavigate } from "react-router-dom";
 import MarkdownPreview from "../MarkdownPreview";
+import RatingForComment from "../Rating/RatingForComment";
 
 const CommentItem = ({
   comment_id,
@@ -19,7 +17,6 @@ const CommentItem = ({
   edit,
   setEdit,
 }) => {
-  const user = useSelector(selectUser);
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
@@ -31,26 +28,6 @@ const CommentItem = ({
     setSeverity(type);
     setOpen(true);
     setMessage(message);
-  };
-
-  const sendLike = async (type) => {
-    try {
-      await CommentsService.createLikeUnderPost(comment_id, type, user?.id);
-      rating = type === "like" ? rating + 1 : rating - 1;
-      showMessage(`${type} sent!`, "success");
-    } catch (error) {
-      console.log(error)
-      showMessage(error.response.data.message, "error");
-    }
-  };
-
-  const deleteLike = async () => {
-    try {
-      await CommentsService.deleteLikeFromPost(comment_id);
-      showMessage("Like deleted!", "success");
-    } catch (error) {
-      showMessage(error.response.data.message, "error");
-    }
   };
 
   const editComment = async () => {
@@ -98,11 +75,10 @@ const CommentItem = ({
         </Typography>
       </div>
       <div>
-        <Rating
-          likeAction={() => sendLike("like")}
-          dislikeAction={() => sendLike("dislike")}
-          deleteLikeAction={() => deleteLike()}
+        <RatingForComment
+          comment_id={comment_id}
           rating={rating}
+          showMessage={showMessage}
         />
       </div>
 

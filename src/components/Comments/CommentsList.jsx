@@ -27,7 +27,7 @@ const CommentsList = ({ comments, author }) => {
     <div elevation={4}>
       {comments.length &&
         comments.map((comment, index) => (
-          <div>
+          <div key={comment.comment_id}>
             <Divider />
             <div className="comment-container">
               {author && (
