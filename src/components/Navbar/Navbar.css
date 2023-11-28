@@ -6,6 +6,14 @@
   position: fixed;
 }
 
+.navigaton-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
 @media screen and (max-width: 690px) {
   .logo {
     display: none;

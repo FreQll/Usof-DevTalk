@@ -6,6 +6,14 @@ export default class CategoriesService {
         return response;
     }
 
+    static async getCategoryById(id) {
+        const response = await axios.get(`http://localhost:3001/api/categories/${id}`);
+        if (response.status !== 200) {
+            return null;
+        }
+        return response;
+    }
+
     static async getCategoriesForPost(postId) {
         const response = await axios.get(`http://localhost:3001/api/posts/${postId}/categories`);
         return response;

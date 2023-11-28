@@ -8,7 +8,7 @@ const DeleteAccountButton = ({ id, setDialogOpen }) => {
 
   return (
     <div>
-      <Button variant="contained" onClick={handleDelete}>
+      <Button variant="contained" onClick={handleDelete} color="error">
         Delete Account
       </Button>
     </div>

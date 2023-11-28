@@ -5,117 +5,6 @@ const User = require("../models/UserModel");
 const jwt = require("jsonwebtoken");
 
 class PostController {
-  //   async getAllPosts(req, res) {
-  //     //     const {
-  //     //       page,
-  //     //       pageSize,
-  //     //       sortBy,
-  //     //       sortOrder,
-  //     //       dateFrom,
-  //     //       dateTo,
-  //     //       statusFilter,
-  //     //     } = req.query;
-
-  //     //     const currentPage = page ? parseInt(page) : 1;
-  //     //     const limit = pageSize ? parseInt(pageSize) : 5;
-  //     //     const offset = (currentPage - 1) * limit;
-  //     //     const sortColumn = sortBy === "rating" ? "rating" : "publish_date";
-  //     //     const sortColumnOrder = sortOrder ? sortOrder : "DESC";
-
-  //     //     if (currentPage <= 0) {
-  //     //       return res.status(400).send("Invalid page number, should start with 1");
-  //     //     }
-
-  //     //     const dateFilterQuery =
-  //     //       dateFrom && dateTo
-  //     //         ? `AND publish_date BETWEEN '${dateFrom}' AND '${dateTo}'`
-  //     //         : "";
-  //     //     const statusFilterQuery = statusFilter
-  //     //       ? `AND status = '${statusFilter}'`
-  //     //       : "";
-
-  //     //     const posts = new Post();
-  //     //     const query = `
-  //     //     SELECT p.post_id, p.title, p.publish_date, p.status, p.content, p.rating, a.login as login
-  //     //     FROM posts p
-  //     //     INNER JOIN users a ON p.author_id = a.user_id
-  //     //     WHERE 1=1 ${dateFilterQuery} ${statusFilterQuery}
-  //     //     ORDER BY ${sortColumn} ${sortColumnOrder}
-  //     //     LIMIT ${limit} OFFSET ${offset}
-  //     //     `;
-  //     // //     const query = `
-  //     // //     SELECT p.*
-  //     // //     FROM posts p
-  //     // //     WHERE 1=1 ${dateFilterQuery} ${statusFilterQuery}
-  //     // //     ORDER BY ${sortColumn} ${sortColumnOrder}
-  //     // //     LIMIT ${limit} OFFSET ${offset}
-  //     // // `;
-  //     //     try {
-  //     //       posts.query(query).then((result) => {
-  //     //         res.status(200).send(result);
-  //     //       });
-  //     //     } catch (err) {
-  //     //       res.status(500).send({ status: 500, message: err.message });
-  //     //     }
-  //     const {
-  //       page,
-  //       pageSize,
-  //       sortBy,
-  //       sortOrder,
-  //       dateFrom,
-  //       dateTo,
-  //       statusFilter,
-  //     } = req.query;
-
-  //     const currentPage = page ? parseInt(page) : 1;
-  //     const limit = pageSize ? parseInt(pageSize) : 5;
-  //     const offset = (currentPage - 1) * limit;
-  //     const sortColumn = sortBy === "rating" ? "rating" : "publish_date";
-  //     const sortColumnOrder = sortOrder ? sortOrder : "DESC";
-
-  //     if (currentPage <= 0) {
-  //       return res.status(400).send("Invalid page number, should start with 1");
-  //     }
-
-  //     const dateFilterQuery =
-  //       dateFrom && dateTo
-  //         ? `AND publish_date BETWEEN '${dateFrom}' AND '${dateTo}'`
-  //         : "";
-  //     const statusFilterQuery = statusFilter
-  //       ? `AND status = '${statusFilter}'`
-  //       : "";
-
-  //     const posts = new Post();
-  //     const countQuery = `
-  //   SELECT COUNT(*) as total
-  //   FROM posts p
-  //   INNER JOIN users a ON p.author_id = a.user_id
-  //   WHERE 1=1 ${dateFilterQuery} ${statusFilterQuery}
-  // `;
-
-  //     const query = `
-  //   SELECT p.post_id, p.title, p.publish_date, p.status, p.content, p.rating, a.login, a.full_name, a.role
-  //   FROM posts p
-  //   INNER JOIN users a ON p.author_id = a.user_id
-  //   WHERE 1=1 ${dateFilterQuery} ${statusFilterQuery}
-  //   ORDER BY ${sortColumn} ${sortColumnOrder}
-  //   LIMIT ${limit} OFFSET ${offset}
-  // `;
-
-  //     try {
-  //       const [countResult, postsResult] = await Promise.all([
-  //         posts.query(countQuery),
-  //         posts.query(query),
-  //       ]);
-
-  //       const totalCount = countResult[0].total; // Общее количество постов
-
-  //       res.status(200).send({ totalCount, posts: postsResult });
-  //     } catch (err) {
-  //       res.status(500).send({ status: 500, message: err.message });
-  //     }
-  //   }
-
   async getAllPosts(req, res) {
     const {
       page,
@@ -128,6 +17,19 @@ class PostController {
       titleSearch,
     } = req.query;
 
+    if (pageSize === "-1") {
+      const posts = new Post();
+      posts
+        .getAllPosts()
+        .then((result) => {
+          res.status(200).send(result);
+        })
+        .catch((err) => {
+          res.status(500).send({ status: 500, err: err.message });
+        });
+      return;
+    }
+ 
     const currentPage = page ? parseInt(page) : 1;
     const limit = pageSize ? parseInt(pageSize) : 5;
     const offset = (currentPage - 1) * limit;
@@ -240,19 +142,6 @@ class PostController {
         res.status(500).send({ status: 500, message: err.message });
       });
   }
-
-  // async getCommentsOfPost(req, res) {
-  //   const { id } = req.params;
-  //   const post = new Post();
-  //   post
-  //     .getAllCommentsForPost(id)
-  //     .then((result) => {
-  //       res.status(200).send(result);
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).send({ status: 500, message: err.message });
-  //     });
-  // }
 
   async getCommentsOfPost(req, res) {
     try {

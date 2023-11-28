@@ -1,13 +1,16 @@
 import { Chip } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 
-const CategoryChip = ({ title }) => {
+const CategoryChip = ({ title, id }) => {
   return (
-    <Chip
-      label={title}
-      size="medium"
-      sx={{ bgcolor: "#1BA3E5", color: "white" }}
-    />
+    <Link to={`/?category=${id}`}>
+      <Chip
+        label={title}
+        size="medium"
+        sx={{ bgcolor: "#1BA3E5", color: "white" }}
+      />
+    </Link>
   );
 };
 

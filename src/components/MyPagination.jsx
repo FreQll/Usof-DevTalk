@@ -1,5 +1,5 @@
 import { Pagination } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPosts, setCurrentPage } from '../store/postSlice';
 
@@ -10,8 +10,8 @@ const MyPagination = () => {
     const dispatch = useDispatch();
 
     const handleChange = (event, value) => {
-        console.log(value);
         dispatch(setCurrentPage(value))
+        window.scrollTo(0, 0);
     }
 
     console.log(currentPage)

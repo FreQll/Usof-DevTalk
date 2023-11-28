@@ -9,16 +9,19 @@ import { selectUser } from "../../store/userSlice";
 import { selectPosts, setFilters, setIsFilters } from "../../store/postSlice";
 
 import "./Filters.css";
+import { useNavigate } from "react-router-dom";
 
 const Filters = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const postsReducer = useSelector(selectPosts);
+  const navigate = useNavigate();
 
   const [checked, setChecked] = useState(false);
 
   const handleChange = () => {
     setChecked((prev) => !prev);
+    navigate("/");
     dispatch(setIsFilters(!postsReducer.isFilters));
     dispatch(
       setFilters({

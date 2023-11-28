@@ -7,7 +7,7 @@ const CategoriesList = ({ categories }) => {
     <div className="categories-container">
       {categories.length
         ? categories.map((item) => (
-            <CategoryChip key={item.title} title={item.title} />
+            <CategoryChip key={item.title} title={item.title} id={item.category_id} />
           ))
         : ""}
     </div>

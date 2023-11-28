@@ -18,6 +18,7 @@ class Post extends Model {
     if (results.length) {
       this.post_id = results[0].post_id;
       this.author_id = results[0].author_id;
+      this.publish_date = results[0].publish_date;
       this.title = results[0].title;
       this.content = results[0].content;
       this.rating = results[0].rating;
@@ -51,7 +52,7 @@ class Post extends Model {
   }
 
   async getAllCategoriesForPost(post_id) {
-    const selectQ = `SELECT categories.title, categories.description
+    const selectQ = `SELECT categories.category_id, categories.title, categories.description
                     FROM post_categories
                     JOIN categories ON post_categories.category_id = categories.category_id
                     WHERE post_categories.post_id = ${post_id};`;

@@ -17,6 +17,10 @@ const Searchbar = () => {
 
   const handleChange = (e) => {
     setSearchValue(e.target.value);
+
+    dispatch(resetToDefault());
+    dispatch(setSearch(e.target.value));
+    dispatch(setIsFilters(false));
   };
 
   const searchPost = () => {

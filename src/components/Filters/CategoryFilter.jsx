@@ -3,12 +3,16 @@ import React, { useEffect, useState } from "react";
 import CategoriesService from "../../API/CategoriesService";
 import { useDispatch, useSelector } from "react-redux";
 import { selectPosts, setCurrentPage, setIsFilters, setSearch, setSelectedCategory } from "../../store/postSlice";
+import { useNavigate } from "react-router-dom";
+import useQuery from "../../Hooks/useQuery";
 
 const CategoryFilter = () => {
   const [category, setCategory] = useState("");
   const [categories, setCategories] = useState([]);
   const dispatch = useDispatch();
   const postsReducer = useSelector(selectPosts);
+  const navigate = useNavigate();
+  const query = useQuery();
 
   useEffect(() => {
     CategoriesService.getAllCategories()
@@ -18,8 +22,9 @@ const CategoryFilter = () => {
       .catch((error) => {
         console.log(error);
       });
-      setCategory(postsReducer.filters?.selectedCategory ? postsReducer.filters.selectedCategory : "")
-  }, [postsReducer.filters.selectedCategory]);
+      //setCategory(postsReducer.filters?.selectedCategory ? postsReducer.filters.selectedCategory : "")
+      setCategory(query.get("category") || "All")
+  }, [postsReducer.filters.selectedCategory, query]);
 
   const handleChange = (event) => {
     setCategory(event.target.value);
@@ -27,13 +32,18 @@ const CategoryFilter = () => {
     dispatch(setIsFilters(false));
     dispatch(setCurrentPage(1));
     dispatch(setSearch(""))
+    console.log("Choice " + event.target.value)
+    if (!event.target.value) {
+      navigate(`/`)
+      return
+    }
+    navigate(`/?category=${event.target.value}`)
   };
 
   return (
     <FormControl fullWidth>
-      <InputLabel id="demo-simple-select-label">Search By Category</InputLabel>
+      <InputLabel>Search By Category</InputLabel>
       <Select
-        labelId="demo-simple-select-label"
         value={category}
         label="Search By Category"
         onChange={handleChange}

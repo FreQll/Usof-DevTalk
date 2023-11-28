@@ -17,7 +17,7 @@ export default class PostsService {
     selectedCategory = "",
     search = ""
   ) {
-    console.log(selectedCategory);
+    //console.log(selectedCategory);
     if (selectedCategory) {
       const response = await axios.get(
         `http://localhost:3001/api/categories/${selectedCategory}/posts?page=${page}`

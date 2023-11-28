@@ -20,6 +20,8 @@ import { ThemeProvider } from "@emotion/react";
 import { CssBaseline, createTheme } from "@mui/material";
 import { useSelector } from "react-redux";
 import { selectThemeMode } from "./store/themeSlice";
+import Categories from "./pages/Categories";
+import Users from "./pages/Users";
 
 function App() {
   const themeReducer = useSelector(selectThemeMode);
@@ -60,6 +62,8 @@ function App() {
               element={<CreateCategory />}
             />
             <Route path="/posts/favorite" element={<FavoritePosts />} />
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/users" element={<Users />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </div>

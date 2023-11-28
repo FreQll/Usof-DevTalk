@@ -13,11 +13,13 @@ const ToggleThemeButton = () => {
   const handleToggle = () => {
     if (theme === "light") {
       setTheme("dark");
+      dispatch(setThemeMode("dark"));
     } else {
       setTheme("light");
+      dispatch(setThemeMode("light"));
     }
 
-    dispatch(setThemeMode(theme));
+    
   };
 
   return (
