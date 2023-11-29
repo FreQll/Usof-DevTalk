@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 const LoginButton = () => {
   return (
-    <Link to="/login">
-      <Button variant="outlined">Log in</Button>
-    </Link>
+    <Box sx={{ml: 1}}>
+      <Link to="/login">
+        <Button size="small" variant="outlined">Log In</Button>
+      </Link>
+    </Box>
   );
 };
 

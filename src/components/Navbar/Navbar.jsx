@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Logo from "./components/Logo";
 import styles from "./Navbar.css";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/userSlice";
 import Searchbar from "./components/Searchbar";
@@ -9,8 +9,8 @@ import UserMenu from "./components/UserMenu";
 import LoginButton from "./components/LoginButton";
 import ToggleThemeButton from "./components/ToggleThemeButton";
 import { selectThemeMode } from "../../store/themeSlice";
-import { Link } from "react-router-dom";
 import HamburgerMenu from "./components/HamburgerMenu";
+import Links from "./components/Links";
 
 const Navbar = () => {
   const user = useSelector(selectUser);
@@ -23,10 +23,10 @@ const Navbar = () => {
       setWindowWidth(window.innerWidth);
     };
 
-    window.addEventListener('resize', handleWindowResize);
+    window.addEventListener("resize", handleWindowResize);
 
     return () => {
-      window.removeEventListener('resize', handleWindowResize);
+      window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
 
@@ -53,22 +53,13 @@ const Navbar = () => {
       className={styles.navBar}
     >
       {windowWidth > 1040 ? (
-        <div className="navigaton-links">
-        <Logo />
-        <Link to="/">
-          <Typography variant="body1">Posts</Typography>
-        </Link>
-        <Link to="/posts/favorite">
-          <Typography variant="body1">Favorite</Typography>
-        </Link>
-        <Link to="/categories">
-          <Typography variant="body1">Categories</Typography>
-        </Link>
-        <Link to="/users">
-          <Typography variant="body1">Users</Typography>
-        </Link>
-      </div>
-      ) : (<HamburgerMenu />)}
+        <div className="navigation-left">
+          <Logo />
+          <Links />
+        </div>
+      ) : (
+        <HamburgerMenu />
+      )}
 
       <Searchbar />
       <div className="flex-container">

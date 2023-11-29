@@ -35,16 +35,16 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-        setError("Passwords don't match");
-        return;
+      setError("Passwords don't match");
+      return;
     }
     try {
-        await AuthService.register(userLogin, password, email, fullName);
-        navigate("/login");
+      await AuthService.register(userLogin, password, email, fullName);
+      navigate("/login");
     } catch (error) {
-        setError(error.response.data.message);
+      setError(error.response.data.message);
     }
-  }
+  };
 
   return (
     <Container sx={{ width: "90%", mb: 6 }}>
@@ -64,7 +64,6 @@ const Register = () => {
             onChange={(e) => {
               setUserLogin(e.target.value);
             }}
-            id="outlined-basic"
             label="Login"
             variant="outlined"
             required
@@ -75,34 +74,9 @@ const Register = () => {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            id="outlined-basic"
             label="Email"
             type="email"
             variant="outlined"
-            required
-          />
-          <TextField
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            id="outlined-basic"
-            type="password"
-            label="Password"
-            variant="outlined"
-            autoComplete="current-password"
-            required
-          />
-          <TextField
-            value={confirmPassword}
-            onChange={(e) => {
-              setConfirmPassword(e.target.value);
-            }}
-            id="outlined-basic"
-            type="password"
-            label="Confirm password"
-            variant="outlined"
-            autoComplete="current-password"
             required
           />
 
@@ -111,9 +85,32 @@ const Register = () => {
             onChange={(e) => {
               setFullName(e.target.value);
             }}
-            id="outlined-basic"
             label="Full Name"
             variant="outlined"
+            required
+          />
+
+          <TextField
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            type="password"
+            label="Password"
+            variant="outlined"
+            autoComplete="current-password"
+            required
+          />
+          
+          <TextField
+            value={confirmPassword}
+            onChange={(e) => {
+              setConfirmPassword(e.target.value);
+            }}
+            type="password"
+            label="Confirm password"
+            variant="outlined"
+            autoComplete="current-password"
             required
           />
 

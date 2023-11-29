@@ -13,11 +13,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../../store/userSlice";
 import AuthService from "../../../API/AuthService";
 import { useNavigate } from "react-router-dom";
-import HomeIcon from "@mui/icons-material/Home";
 import { useState } from "react";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import AddIcon from "@mui/icons-material/Add";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export default function UserMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -51,22 +49,10 @@ export default function UserMenu() {
     navigate(`user/${user.login}`);
   };
 
-  const handleGoHome = (e) => {
-    e.preventDefault();
-    handleClose();
-    navigate(`/`);
-  };
-
   const handleGoAdmin = (e) => {
     e.preventDefault();
     handleClose();
     navigate(`/admin-panel`);
-  };
-
-  const handleGoFavorite = (e) => {
-    e.preventDefault();
-    handleClose();
-    navigate(`/posts/favorite`);
   };
 
   const handleGoNewPost = (e) => {
@@ -137,20 +123,7 @@ export default function UserMenu() {
           />{" "}
           My account
         </MenuItem>
-
         <Divider />
-        <MenuItem onClick={handleGoHome}>
-          <ListItemIcon>
-            <HomeIcon fontSize="small" />
-          </ListItemIcon>
-          Home
-        </MenuItem>
-        <MenuItem onClick={handleGoFavorite}>
-          <ListItemIcon>
-            <FavoriteIcon fontSize="small" />
-          </ListItemIcon>
-          Favorite
-        </MenuItem>
         <MenuItem onClick={handleGoNewPost}>
           <ListItemIcon>
             <AddIcon fontSize="small" />
