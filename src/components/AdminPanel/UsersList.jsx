@@ -7,7 +7,7 @@ import SecurityIcon from '@mui/icons-material/Security';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from "react-router-dom";
 
-const UsersList = () => {
+const UsersList = ({showMessage}) => {
   const [rows, setRows] = useState([]);
   const navigate = useNavigate();
 
@@ -89,6 +89,8 @@ const UsersList = () => {
           return updatedRows;
         });
       }
+
+      showMessage(`User is now have role ${updatedRole}`, "success")
     });
   };
 
@@ -103,6 +105,8 @@ const UsersList = () => {
           return updatedRows;
         });
       }
+
+      showMessage("User deleted successfully", "success")
     });
   };
 
@@ -113,9 +117,9 @@ const UsersList = () => {
         setRows(rowsWithId);
       })
       .catch((error) => {
-        console.log(error);
+        showMessage(error.response.data.message, "error");
       });
-  }, []);
+  }, [showMessage]);
 
   return (
     <div>
@@ -134,13 +138,13 @@ const UsersList = () => {
           }}
           processRowUpdate={(updatedRow, originalRow) => {
             UserService.updateProfile(updatedRow.user_id, updatedRow.full_name, updatedRow.email, updatedRow.login).then((response) => {
-              console.log(response);
+              showMessage("User updated successfully", "success")
             });
           }}
           onProcessRowUpdateError={(error) => {
-            console.error(error);
+            showMessage("User update failed", "error")
           }}
-          pageSizeOptions={[5]}
+          pageSizeOptions={[10]}
           
           disableRowSelectionOnClick
         />

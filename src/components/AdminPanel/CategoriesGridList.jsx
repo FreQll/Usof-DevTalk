@@ -3,7 +3,7 @@ import CategoriesService from "../../API/CategoriesService";
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
-const CategoriesGridList = () => {
+const CategoriesGridList = ({showMessage}) => {
   const [rows, setRows] = useState([]);
 
   const columns = [
@@ -34,16 +34,16 @@ const CategoriesGridList = () => {
         setRows(rowsWithId);
       })
       .catch((error) => {
-        console.log(error);
+        showMessage(error.response.data.message, "error");
       });
-  }, []);
+  }, [showMessage]);
 
   return (
     <div>
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid
           rows={rows}
-          columns={columns}
+          columns={columns}f
           autoHeight={true}
           getRowId={(row) => row.category_id}
           initialState={{
@@ -59,13 +59,13 @@ const CategoriesGridList = () => {
               updatedRow.title,
               updatedRow.description,
             ).then((response) => {
-              console.log(response);
+              showMessage("Category updated successfully", "success")
             });
           }}
           onProcessRowUpdateError={(error) => {
-            console.error(error);
+            showMessage("Category update failed", "error")
           }}
-          pageSizeOptions={[5]}
+          pageSizeOptions={[10]}
           disableRowSelectionOnClick
         />
       </Box>

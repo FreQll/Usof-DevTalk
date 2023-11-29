@@ -50,16 +50,15 @@ const Login = () => {
         })
       );
       navigate("/");
-      //}
     } catch (error) {
       setError(error.response.data.message);
     }
   };
 
   return (
-    <Container sx={{ width: "90%" }}>
-      <Paper elevation={4} sx={{ p: 5 }} style={{ textAlign: "center" }}>
-        <Typography variant="h2">Log in</Typography>
+    <Container component="main" maxWidth="sm">
+      <Paper elevation={4} sx={{ p: 4, mt: 5 }} style={{ textAlign: "center" }}>
+        <Typography variant="h2">Log In</Typography>
 
         <form
           action=""

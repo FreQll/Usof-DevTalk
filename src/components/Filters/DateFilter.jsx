@@ -24,7 +24,9 @@ const DateFilter = () => {
       return;
     }
     let dateFrom;
-    const dateTo = dayjs(new Date()).format("YYYY-MM-DD");
+    const dateTo = dayjs(new Date().setDate(new Date().getDate() + 1)).format(
+      "YYYY-MM-DD"
+    );
     if (event.target.value === "week") {
       dateFrom = dayjs(new Date().setDate(new Date().getDate() - 7)).format(
         "YYYY-MM-DD"

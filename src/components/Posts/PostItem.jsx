@@ -19,7 +19,6 @@ const PostItem = (props) => {
   useEffect(() => {
     CategoriesService.getCategoriesForPost(props.post.post_id).then(
       (response) => {
-        console.log(response.data);
         setCategories(response.data);
       }
     );

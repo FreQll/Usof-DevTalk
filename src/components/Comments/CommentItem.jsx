@@ -34,7 +34,6 @@ const CommentItem = ({
     if (editField) {
       await CommentsService.editComment(comment_id, editField)
         .then((response) => {
-          console.log(response);
           setEdit(null);
           navigate(0);
         })

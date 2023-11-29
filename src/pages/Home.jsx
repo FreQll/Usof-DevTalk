@@ -1,9 +1,4 @@
-import {
-  Box,
-  Button,
-  Container,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import PostsList from "../components/Posts/PostsList";
 import PostsService from "../API/PostsService";
@@ -32,7 +27,7 @@ const Home = () => {
     if (query.get("category")) {
       CategoriesService.getCategoryById(query.get("category")).then(
         (response) => {
-          setCurrentCategory(response.data.title);
+          setCurrentCategory(response.data);
         }
       );
     }
@@ -82,13 +77,18 @@ const Home = () => {
 
       <Container sx={{ mb: 10 }}>
         <Container>
-          <div>
-            <Typography variant="h4" sx={{ mb: 3 }}>
+          <Box sx={{ mb: 3 }}>
+            <Typography variant="h4" >
               {query.get("category")
-                ? `Questions With Category ${currentCategory}`
+                ? `Questions With Category ${currentCategory.title}`
                 : "Top Questions"}
             </Typography>
-          </div>
+            {query.get("category") && (
+              <Typography variant="body2" color="grey">
+                {currentCategory.description}
+              </Typography>
+            )}
+          </Box>
         </Container>
 
         <Container>

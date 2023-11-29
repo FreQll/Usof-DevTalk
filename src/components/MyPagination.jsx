@@ -14,8 +14,6 @@ const MyPagination = () => {
         window.scrollTo(0, 0);
     }
 
-    console.log(currentPage)
-
     return (
         <Pagination count={Math.ceil(totalCount / 5)} variant="outlined" color="primary" value={currentPage} onChange={handleChange}/>
     );

@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import "./css/AdminPanel.css";
 import CategoriesGridList from "../components/AdminPanel/CategoriesGridList";
+import CustomSnackbar from "../components/CustomSnackbar";
 
 const AdminPanel = () => {
   const user = useSelector(selectUser);
@@ -22,6 +23,16 @@ const AdminPanel = () => {
       navigate("/");
     }
   }, [user, navigate]);
+
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
+  const [severity, setSeverity] = useState("error");
+
+  const showMessage = (message, type) => {
+    setSeverity(type);
+    setOpen(true);
+    setMessage(message);
+  };
 
   const handleChangeEntity = (event, newEntity) => {
     setEntity(newEntity);
@@ -59,9 +70,18 @@ const AdminPanel = () => {
         </ToggleButtonGroup>
       </div>
 
-      {entity === "users" && <UsersList />}
+      {entity === "users" && <UsersList showMessage={showMessage} />}
 
-      {entity === "categories" && <CategoriesGridList />}
+      {entity === "categories" && (
+        <CategoriesGridList showMessage={showMessage} />
+      )}
+
+      <CustomSnackbar
+        severity={severity}
+        message={message}
+        open={open}
+        setOpen={setOpen}
+      />
     </div>
   );
 };

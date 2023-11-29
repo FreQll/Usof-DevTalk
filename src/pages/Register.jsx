@@ -47,8 +47,8 @@ const Register = () => {
   };
 
   return (
-    <Container sx={{ width: "90%", mb: 6 }}>
-      <Paper elevation={4} sx={{ p: 5 }} style={{ textAlign: "center" }}>
+    <Container component="main" maxWidth="sm" sx={{ mb: 6 }}>
+      <Paper elevation={4} sx={{ p: 4 }} style={{ textAlign: "center" }}>
         <Typography variant="h2">Register</Typography>
 
         <form

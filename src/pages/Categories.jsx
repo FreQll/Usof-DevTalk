@@ -13,7 +13,7 @@ const Categories = () => {
     }, []);
 
     return (
-        <Container>
+        <Container sx={{mb: 8}}>
             <Typography variant="h4" sx={{ mb: "20px" }}>All Categories</Typography>
             {categories && <AllCategories categories={categories}/>}
         </Container>

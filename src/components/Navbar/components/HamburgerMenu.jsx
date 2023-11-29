@@ -7,11 +7,14 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import HomeIcon from "@mui/icons-material/Home";
 import CategoryIcon from "@mui/icons-material/Category";
 import GroupIcon from "@mui/icons-material/Group";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../store/userSlice";
 
 const HamburgerMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
+  const user = useSelector(selectUser);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -50,12 +53,14 @@ const HamburgerMenu = () => {
           </ListItemIcon>
           Home
         </MenuItem>
-        <MenuItem onClick={() => handleNavigate("/posts/favorite")}>
-          <ListItemIcon>
-            <FavoriteIcon fontSize="small" />
-          </ListItemIcon>
-          Favorite
-        </MenuItem>
+        {user && (
+          <MenuItem onClick={() => handleNavigate("/posts/favorite")}>
+            <ListItemIcon>
+              <FavoriteIcon fontSize="small" />
+            </ListItemIcon>
+            Favorite
+          </MenuItem>
+        )}
         <MenuItem onClick={() => handleNavigate("/categories")}>
           <ListItemIcon>
             <CategoryIcon fontSize="small" />

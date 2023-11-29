@@ -72,7 +72,7 @@ const PostPage = () => {
           setCommentsAuthors(commentsAuthorsTemp);
         }
       } catch (e) {
-        console.log(e.response.data.message);
+        console.error(e.response.data.message);
       }
     }
 

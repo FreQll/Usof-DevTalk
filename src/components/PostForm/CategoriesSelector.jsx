@@ -16,7 +16,6 @@ const CategoriesSelector = ({ category, handleChange }) => {
 
   useEffect(() => {
     CategoriesService.getAllCategories().then((response) => {
-        console.log(response.data)
         setCategories(response.data);
     }).catch(error => {
         console.error(error)

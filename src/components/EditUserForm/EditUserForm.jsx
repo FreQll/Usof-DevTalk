@@ -40,7 +40,6 @@ const EditUserForm = ({ login, id, setDialogOpen }) => {
 
   const handleUpload = async () => {
     let changes = false;
-    console.log(loginInput, emailInput, fullNameInput, selectedFile, id);
     try {
       if (selectedFile) {
         const formData = new FormData();

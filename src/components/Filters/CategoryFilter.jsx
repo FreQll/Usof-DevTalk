@@ -32,7 +32,6 @@ const CategoryFilter = () => {
     dispatch(setIsFilters(false));
     dispatch(setCurrentPage(1));
     dispatch(setSearch(""))
-    console.log("Choice " + event.target.value)
     if (!event.target.value) {
       navigate(`/`)
       return

@@ -28,7 +28,7 @@ const UserForm = () => {
         navigate("/admin-panel");
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 
