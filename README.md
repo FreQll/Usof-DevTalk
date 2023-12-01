@@ -4,7 +4,7 @@ ____
 
 ### What is it? | [DevTalk in Action](https://www.youtube.com/watch?v=0AhMtMo64Us&ab_channel=FreQl)
 
-**DevTalk** is a dynamic and user-friendly forum web application built with React for the frontend part, leveraging the Node.js + Express as a REST API for the backend. This platform provides developers with a collaborative space to engage in insightful discussions, seek assistance, and share their expertise within the vibrant developer community. With a sleek and intuitive interface, DevTalk seamlessly integrates React's key concepts, including components, JSX, props and state management, the component API, and various component types. Users can explore a diverse range of topics, contribute to discussions, and stay up-to-date with the latest trends in the ever-evolving world of software development. DevTalk is not just a forum; it's a hub for fostering knowledge exchange and building connections among developers.
+**DevTalk** is a dynamic and user-friendly forum web application built with React for the frontend part, leveraging the Node.js + Express as a REST API for the backend. This platform provides developers with a collaborative space to engage in insightful discussions, seek assistance, and share their expertise within the vibrant developer community. With a sleek and intuitive interface, DevTalk seamlessly integrates React's key concepts, including components, JSX, props and state management, the component API, and various component types. Users can explore a diverse range of topics, contribute to discussions, and stay up-to-date with the latest trends in the ever-evolving world of software development. DevTalk is not just a forum, it's a hub for fostering knowledge exchange and building connections among developers.
 
 ____
 ### Setup
