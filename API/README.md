@@ -1,6 +1,8 @@
 
 # USOF BACKEND  *Forum API*
 
+[Postman collection for testing API](https://www.postman.com/supply-physicist-98705787/workspace/public/collection/29388355-5a18b6fa-a220-4a17-85d1-285b120bb24c?action=share&creator=29388355)
+
 # How to run:
 
   
