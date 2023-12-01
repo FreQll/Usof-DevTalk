@@ -28,7 +28,7 @@ const CustomDialog = ({
     >
       <DialogTitle>{dialogTitle}</DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-description">
+        <DialogContentText>
           {dialogContent}
         </DialogContentText>
       </DialogContent>

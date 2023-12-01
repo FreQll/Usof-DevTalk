@@ -36,4 +36,12 @@ export default class CategoriesService {
         );
         return response;
     }
+
+    static async deleteCategory(id) {
+        const response = await axios.delete(
+            `http://localhost:3001/api/categories/${id}`,
+            { withCredentials: true }
+        );
+        return response;
+    }
 }

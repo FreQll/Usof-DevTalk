@@ -84,7 +84,6 @@ export default function UserMenu() {
       </Box>
       <Menu
         anchorEl={anchorEl}
-        id="account-menu"
         open={open}
         onClose={handleClose}
         onClick={handleClose}

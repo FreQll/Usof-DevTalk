@@ -101,7 +101,7 @@ const PostForm = ({
             you and admins!
           </Typography>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Status</InputLabel>
+            <InputLabel>Status</InputLabel>
             <Select
               value={status}
               label="Status"

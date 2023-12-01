@@ -1,8 +1,8 @@
 .content-block {
     display: flex;
     flex-direction: row;
-    justify-content: baseline;
-    gap: 15px;
+    justify-content: flex-start;
+    /* gap: 15px; */
     align-items: baseline;
 }
 

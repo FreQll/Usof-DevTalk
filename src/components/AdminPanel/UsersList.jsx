@@ -107,6 +107,8 @@ const UsersList = ({showMessage}) => {
       }
 
       showMessage("User deleted successfully", "success")
+    }).catch((error) => {
+      showMessage(error.response.data.message, "error");
     });
   };
 

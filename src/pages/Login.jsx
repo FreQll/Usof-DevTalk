@@ -71,7 +71,6 @@ const Login = () => {
             onChange={(e) => {
               setUserLogin(e.target.value);
             }}
-            id="outlined-basic"
             label="Login"
             variant="outlined"
             required
@@ -81,7 +80,6 @@ const Login = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            id="outlined-basic"
             type="password"
             label="Password"
             variant="outlined"

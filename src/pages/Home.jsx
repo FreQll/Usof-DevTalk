@@ -78,7 +78,7 @@ const Home = () => {
       <Container sx={{ mb: 10 }}>
         <Container>
           <Box sx={{ mb: 3 }}>
-            <Typography variant="h4" >
+            <Typography variant="h4">
               {query.get("category")
                 ? `Questions With Category ${currentCategory.title}`
                 : "Top Questions"}
@@ -91,16 +91,18 @@ const Home = () => {
           </Box>
         </Container>
 
-        <Container>
-          <div className="sort-container">
-            <div className="sort-item">
-              <SortPosts />
-              <SortOrder />
-            </div>
+        {!query.get("category") && (
+          <Container>
+            <div className="sort-container">
+              <div className="sort-item">
+                <SortPosts />
+                <SortOrder />
+              </div>
 
-            <DateFilter />
-          </div>
-        </Container>
+              <DateFilter />
+            </div>
+          </Container>
+        )}
 
         {posts ? <PostsList posts={posts} /> : <Box>There is no posts :(</Box>}
         <div className="pagination">

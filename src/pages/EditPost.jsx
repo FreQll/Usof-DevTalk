@@ -24,7 +24,7 @@ const EditPost = () => {
         status: response.data.status,
       }));
     });
-  }, [id]);
+  }, [id, navigate, user]);
 
   const [postFormState, setPostFormState] = useState({
     content: "",
@@ -60,7 +60,7 @@ const EditPost = () => {
 
   return (
     <div>
-      <Container>
+      <Container sx={{mb: 8}}>
         <Typography variant="h3">Edit Post</Typography>
 
         <PostForm

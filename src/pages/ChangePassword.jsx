@@ -54,7 +54,6 @@ const ChangePassword = () => {
             onChange={(e) => {
               setNewPassword(e.target.value);
             }}
-            id="outlined-basic"
             label="New Password"
             type="password"
             variant="outlined"
@@ -66,7 +65,6 @@ const ChangePassword = () => {
             onChange={(e) => {
               setConfirmNewPassword(e.target.value);
             }}
-            id="outlined-basic"
             label="Confirm New Password"
             type="password"
             variant="outlined"

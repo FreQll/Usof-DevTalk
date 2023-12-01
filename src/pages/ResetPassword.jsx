@@ -47,7 +47,6 @@ const ResetPassword = () => {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            id="outlined-basic"
             label="Email"
             type="email"
             variant="outlined"

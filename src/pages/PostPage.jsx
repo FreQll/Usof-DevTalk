@@ -158,25 +158,27 @@ const PostPage = () => {
 
           <Divider sx={{ mt: "20px", mb: "20px" }} />
 
-          <div className="info">
-            <div>
-              <UserPhoto login={author.login} />
-              <Typography variant="body2">{author.full_name}</Typography>
+          <Container>
+            <div className="info">
+              <div>
+                <UserPhoto login={author.login} />
+                <Typography variant="body2">{author.full_name}</Typography>
+              </div>
+              <div className="categories-list">
+                <CategoriesList categories={categories} />
+              </div>
             </div>
-            <div className="categories-list">
-              <CategoriesList categories={categories} />
+            <div className="content-block">
+              <RatingForPost
+                post_id={id}
+                rating={post.rating}
+                showMessage={showMessage}
+              />
+              <Container>
+                <MarkdownBlock content={post.content} />
+              </Container>
             </div>
-          </div>
-          <div className="content-block">
-            <RatingForPost
-              post_id={id}
-              rating={post.rating}
-              showMessage={showMessage}
-            />
-            <Container sx={{ pr: 5 }}>
-              <MarkdownBlock content={post.content} />
-            </Container>
-          </div>
+          </Container>
 
           <Divider sx={{ mt: "20px", mb: "20px" }} />
 

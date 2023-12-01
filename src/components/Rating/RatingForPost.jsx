@@ -94,7 +94,7 @@ const RatingForPost = ({ post_id, rating, showMessage }) => {
           </IconButton>
         </Tooltip>
       ) : (
-        <Tooltip title="Like" placement="bottom">
+        <Tooltip title="Disike" placement="bottom">
           <IconButton onClick={() => sendLike("dislike", true)} color="primary">
             <ArrowDropDownCircleOutlined />
           </IconButton>

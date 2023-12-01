@@ -54,7 +54,6 @@ const RatingForComment = ({ comment_id, rating, showMessage }) => {
   useEffect(() => {
     CommentsService.getLikesUnderComment(comment_id).then((response) => {
       response.data.forEach((like) => {
-        console.log(like);
         if (like.user_id === user?.id) {
           if (like.type === "like") {
             setIsLiked([{ like: true, dislike: false }]);

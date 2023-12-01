@@ -1,10 +1,29 @@
 import React, { useEffect, useState } from "react";
 import CategoriesService from "../../API/CategoriesService";
 import { Box } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const CategoriesGridList = ({showMessage}) => {
   const [rows, setRows] = useState([]);
+
+  const deleteCategory = (params) => {
+    CategoriesService.deleteCategory(params.row.category_id).then((response) => {
+      const rowIndex = rows.findIndex((row) => row.category_id === params.row.category_id);
+
+      if (rowIndex !== -1) {
+        setRows((prevRows) => {
+          const updatedRows = [...prevRows];
+          updatedRows.splice(rowIndex, 1);
+          return updatedRows;
+        });
+      }
+
+      showMessage("Category deleted successfully", "success")
+    }).catch((error) => {
+      showMessage(error.response.data.message, "error");
+    });
+  };
 
   const columns = [
     { field: "category_id", headerName: "ID", flex: 0.5, width: 90 },
@@ -21,6 +40,18 @@ const CategoriesGridList = ({showMessage}) => {
       width: 150,
       flex: 2,
       editable: true,
+    },
+    {
+      field: 'actions',
+      type: 'actions',
+      width: 80,
+      getActions: (params) => [
+        <GridActionsCellItem
+          icon={<DeleteIcon />}
+          label="Delete Category"
+          onClick={() => deleteCategory(params)}
+        />,
+      ],
     },
   ];
 

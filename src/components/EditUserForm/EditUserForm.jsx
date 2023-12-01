@@ -97,21 +97,18 @@ const EditUserForm = ({ login, id, setDialogOpen }) => {
 
       <div className="user-info-edit">
         <TextField
-          id="outlined-basic"
           value={loginInput}
           onChange={(e) => setLoginInput(e.target.value)}
           label="Login"
           variant="outlined"
         />
         <TextField
-          id="outlined-basic"
           value={fullNameInput}
           onChange={(e) => setFullNameInput(e.target.value)}
           label="Full Name"
           variant="outlined"
         />
         <TextField
-          id="outlined-basic"
           value={emailInput}
           onChange={(e) => setEmailInput(e.target.value)}
           label="Email"
